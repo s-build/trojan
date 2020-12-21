@@ -7,7 +7,8 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-        with: trojan-gfw/trojan
+        with:
+          repository: trojan-gfw/trojan
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -20,8 +21,10 @@ jobs:
       - name: Make the trojan files
         id: make_trojan
         run: |
-          cmake
+          ls
+          cmake .
           make -j $(nproc)
+          ls
 
       - name: Get the version
         id: get_version
